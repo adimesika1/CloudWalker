@@ -10,6 +10,7 @@ from tqdm import tqdm
 from sklearn.manifold import TSNE
 from distinctipy import distinctipy
 import time
+import random
 
 import walks
 import rnn_model
@@ -17,7 +18,7 @@ import utils
 import dataset
 
 def calc_accuracy_test(dataset_expansion=False, logdir=None, labels=None, iter2use='last', classes_indices_to_use=None,
-                       dnn_model=None, params=None, n_models=np.inf, model_fn=None, n_walks_per_model=16, data_augmentation={}, seed=0):
+                       dnn_model=None, params=None, n_models=np.inf, model_fn=None, n_walks_per_model=16, data_augmentation={}):
   SHOW_WALK=0
   # Prepare parameters for the evaluation
   if params is None:
@@ -61,7 +62,6 @@ def calc_accuracy_test(dataset_expansion=False, logdir=None, labels=None, iter2u
   models_ids = []
   to_print=0
   for i, data in tqdm(enumerate(test_dataset), total=n_tst_items):
-    tb = time.perf_counter()
     name, ftrs, gt = data
     model_fn = name.numpy()[0].decode()
     model_name = utils.get_model_name_from_npz_fn(model_fn)
@@ -77,7 +77,7 @@ def calc_accuracy_test(dataset_expansion=False, logdir=None, labels=None, iter2u
     pred_per_model_name[model_name] = [int(gt), max_hit]
     # generate confusion matrix
     all_confusion[int(gt), max_hit] += 1
-    to_print += time.perf_counter()-tb
+
     # for retrieval
     #all_features.append(np.mean(predictions, axis=0) / np.linalg.norm(np.mean(predictions, axis=0)))
     #all_labels.append(gt)
@@ -93,14 +93,12 @@ def calc_accuracy_test(dataset_expansion=False, logdir=None, labels=None, iter2u
     n_sucesses += pred == gt
     prediction_per_model.append(pred)
   overall_accuracy = n_sucesses / n_models
-  print("average seconds per object: ", to_print/n_models)
   # calculate accuracy per category
   mean_acc_per_class = calculate_mean_accuracy_per_class(labels, all_confusion)
 
   #save_features_for_retrieval(all_features, all_labels, models_ids, params.logdir)
 
   return [overall_accuracy, mean_acc_per_class], dnn_model
-
 
 
 def save_features_for_retrieval(features, labels, ids, logdir):
@@ -193,37 +191,23 @@ if __name__ == '__main__':
     logdir = sys.argv[2]
     job = sys.argv[1]
     params = get_params(job)
-    acc_overall = []
-    acc_per_class = []
-
-    for i in range(10):
-      seed1 = np.random.randint(1, 10000)
-      seed2 = np.random.randint(1, 10000)
-      #random.seed(seed1)
-      #np.random.seed(seed2)
-      #tf.random.set_seed(seed1)
-      #random.seed(np.random.randint(1, 10000))
-      np.random.seed(np.random.randint(1, 10000))
-      tf.random.set_seed(np.random.randint(1, 10000))
-      accs, _ = calc_accuracy_test(logdir=logdir,
-                                   dataset_expansion=params.full_accuracy_test['dataset_expansion'],
-                                   labels=params.full_accuracy_test['labels'],
-                                   n_walks_per_model=params.full_accuracy_test['n_walks_per_model'],
-                                   iter2use='00120037', params=params, seed = seed2)
-      print('Mean accuracy:', accs[0])
-      print('Mean per class accuracy:', accs[1])
-      print('seed1: ',seed1)
-      print('seed2: ',seed2)
-      acc_overall.append(accs[0])
-      acc_per_class.append(accs[1])
-    print("list_overall: ", acc_overall)
-    print("list_mean_per_class: ", acc_per_class)
-    print("acc_overall: ", np.mean(acc_overall))
-    print("acc_per_class: ", np.mean(acc_per_class))
-    print("acc_overall_var: ", np.std(acc_overall))
-    print("acc_per_class_var: ", np.std(acc_per_class))
-    print("max_overall_acc: ", np.max(acc_overall))
 
 
-    ### modelnet40_normal_resampled runs/0075-24.01.2022..11.05__modelnet40_normal_resampled ### iter2use=00120037
+    seed1 = np.random.randint(1, 10000)
+    seed2 = np.random.randint(1, 10000)
+    random.seed(seed1)
+    np.random.seed(seed2)
+    tf.random.set_seed(seed1)
+    accs, _ = calc_accuracy_test(logdir=logdir,
+                                 dataset_expansion=params.full_accuracy_test['dataset_expansion'],
+                                 labels=params.full_accuracy_test['labels'],
+                                 n_walks_per_model=params.full_accuracy_test['n_walks_per_model'],
+                                 iter2use='00120037', params=params)
+    print('Mean accuracy:', accs[0])
+    print('Mean per class accuracy:', accs[1])
+    print('seed1: ',seed1)
+    print('seed2: ',seed2)
+
+
+    ### modelnet40_normal_resampled runs/0012-31.03.2022..15.14__modelnet40_normal_resampled### iter2use=00120037
     ### 3dfuture runs/0314-13.03.2022..09.54__future3d ### iter2use=iter2use
