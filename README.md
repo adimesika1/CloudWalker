@@ -1,5 +1,5 @@
 # CloudWalker: Random walks for 3D point cloud shape analysis
-![Alt text](images/teaser.PNG?raw=true "Title")
+![teaser](images/teaser.png)
 
 ## [[Paper]](https://arxiv.org/abs/2112.01050)
 Created by [Adi Mesika](mailto:adimesika10@gmail.com) from Technion - Israel Institute of Technology
