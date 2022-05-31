@@ -20,6 +20,7 @@ and put it under `CloudWalker/datasets_raw/<dataset>`.
 
 
 ### Processed
+
 To prepare the data, run `python dataset_prepare.py <dataset>`
 
 Processing will rearrange dataset in `npz` files.
@@ -49,6 +50,9 @@ To evaluate **classification** task run:
 ```
 python evaluate_classification.py <dataset> <trained_model_directory>
 ```
+
+## Pretrained   
+You can use some pretrained models from [our pretrained models](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/runs.zip) to run evaluation only.
 
 ## Citation
 If you find our work useful in your research, please consider citing:
