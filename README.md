@@ -30,7 +30,9 @@ The model can be run in two ways. On one, walks that are already prepared, and o
 It currently requires the walks to be pre-created.
 
 To prepare the walks, run `python pre_created_walks/save_walk_as_npz.py <dataset>`
-
+or download our walks from 
+[datasets_processed](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/datasets_processed/)
+to `CloudWalker/datasets_processed/<dataset_dir>`. 
 
 ## Training
 ```
