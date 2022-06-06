@@ -9,7 +9,39 @@ This repository contains the implementation of CloudWalker
 ## Installation
 The code is tested under tf-2.4.1 GPU version and python 3.8 on Ubunto 18.04, Cuda 11.1, GPU RTX 3090.
 There are also some dependencies for a few Python libraries for data processing and visualizations (requirements file).
+I suggest you to use Anaconda for creating the virtual environment. 
 
+For example:
+```
+conda create -n <env_name> python=3.8
+conda activate <env_name>
+```
+Then, you can install with conda\pip all the packages mentioned in the requirements file.
+
+## Files structure
+```
+├── CloudWalker
+│   ├── datasets_processed
+│       ├── modelnet40_normal_resampled (.npz)
+│       └── modelnet40_normal_resampled_dirs (pre-created walks)
+│   ├── datasets_raw
+│       └──  modelnet40_normal_resampled
+│   ├── pre_created_walks
+│       ├── dataset.py
+│       ├── save_walk_as_npz.py
+│       └── params_setting.py
+│   ├── runs
+│   ├── dataset.py
+│   ├── dataset_prepare.py
+│   ├── evaluate_classification.py
+│   ├── evaluate_retrieval.py
+│   ├── params_setting.py
+│   ├── rnn_model.py
+│   ├── train_val.py
+│   ├── utils.py
+│   ├── requirements.txt
+└── └── README.md
+```
 
 ### Raw datasets
 To get the raw datasets go to the relevant website, 
@@ -21,10 +53,11 @@ and put it under `CloudWalker/datasets_raw/<dataset>`.
 
 ### Processed
 
+This part should be only run once per dataset.  
 To prepare the data, run `python dataset_prepare.py <dataset>`
 
-Processing will rearrange dataset in `npz` files.
-Then, copy the generated directory to `CloudWalker/datasets_processed/<dataset>`.
+Processing will rearrange dataset in `npz` files. The folder with the files "dataset_processed_tmp" automatically being generated (in root).
+Then, copy the generated files for the `<dataset>` to `CloudWalker/datasets_processed/<dataset>`.
 
 The model can be run in two ways. On one, walks that are already prepared, and on the other, walks that are created during training. We decided to release the most efficient version.
 It currently requires the walks to be pre-created.
@@ -32,7 +65,7 @@ It currently requires the walks to be pre-created.
 To prepare the walks, run `python pre_created_walks/save_walk_as_npz.py <dataset>`
 or download our walks from 
 [datasets_processed](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/datasets_processed/)
-to `CloudWalker/datasets_processed/<dataset_dir>`. 
+to `CloudWalker/datasets_processed/<dataset>`. (dirs version)
 
 ## Training
 ```
@@ -55,7 +88,8 @@ python evaluate_classification.py <dataset> <trained_model_directory>
 
 ## Pretrained   
 You can use some pretrained models from [our pretrained models](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/runs.zip) to run evaluation only.
-Download and extract the runs.zip file to the "runs" directory in the root. Run the evaluation script as described previously.
+Download and extract the runs.zip file to the "runs" directory in the root. 
+Run the evaluation script as described previously (run on the processed dataset).
 
 For example:
 ```

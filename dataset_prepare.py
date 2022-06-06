@@ -5,7 +5,6 @@ import trimesh
 from easydict import EasyDict
 import numpy as np
 import open3d as o3d
-from plyfile import PlyData, PlyElement
 import json
 
 import utils
