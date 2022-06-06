@@ -192,22 +192,16 @@ if __name__ == '__main__':
     job = sys.argv[1]
     params = get_params(job)
 
-
-    seed1 = np.random.randint(1, 10000)
-    seed2 = np.random.randint(1, 10000)
-    random.seed(seed1)
-    np.random.seed(seed2)
-    tf.random.set_seed(seed1)
-    accs, _ = calc_accuracy_test(logdir=logdir,
-                                 dataset_expansion=params.full_accuracy_test['dataset_expansion'],
-                                 labels=params.full_accuracy_test['labels'],
-                                 n_walks_per_model=params.full_accuracy_test['n_walks_per_model'],
-                                 iter2use='00120037', params=params)
-    print('Mean accuracy:', accs[0])
-    print('Mean per class accuracy:', accs[1])
-    print('seed1: ',seed1)
-    print('seed2: ',seed2)
+    for i in range(10):
+      np.random.seed(np.random.randint(1, 10000))
+      accs, _ = calc_accuracy_test(logdir=logdir,
+                                   dataset_expansion=params.full_accuracy_test['dataset_expansion'],
+                                   labels=params.full_accuracy_test['labels'],
+                                   n_walks_per_model=params.full_accuracy_test['n_walks_per_model'],
+                                   iter2use='00100082', params=params)
+      print('Mean accuracy:', accs[0])
+      print('Mean per class accuracy:', accs[1])
 
 
-    ### modelnet40_normal_resampled runs/0012-31.03.2022..15.14__modelnet40_normal_resampled### iter2use=00120037
+    ### modelnet40_normal_resampled runs/0017-25.05.2022..22.40__modelnet40_normal_resampled### iter2use=00120037
     ### 3dfuture runs/0314-13.03.2022..09.54__future3d ### iter2use=iter2use

@@ -55,6 +55,12 @@ python evaluate_classification.py <dataset> <trained_model_directory>
 
 ## Pretrained   
 You can use some pretrained models from [our pretrained models](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/runs.zip) to run evaluation only.
+Download and extract the runs.zip file to the "runs" directory in the root. Run the evaluation script as described previously.
+
+For example:
+```
+python evaluate_classification.py modelnet40_normal_resampled runs/0017-25.05.2022..22.40__modelnet40_normal_resampled
+```
 
 ## Citation
 If you find our work useful in your research, please consider citing:
