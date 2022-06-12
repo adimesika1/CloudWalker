@@ -7,9 +7,10 @@ Created by [Adi Mesika](mailto:adimesika10@gmail.com) from Technion - Israel Ins
 This repository contains the implementation of CloudWalker
 
 ## Installation
-The code is tested under tf-2.4.1 GPU version and python 3.8 on Ubunto 18.04, Cuda 11.1, GPU RTX 3090.
+The code is tested under tf-2.4.1 GPU version and python 3.8 on Ubunto 18.04, Cuda 11.1, cuDNN v8.0.5, GPU RTX 3090.
 There are also some dependencies for a few Python libraries for data processing and visualizations (requirements file).
 I suggest you to use Anaconda for creating the virtual environment. 
+It is important to install cuda and cudnn before creating the virtual environment. 
 
 For example:
 ```
