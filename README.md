@@ -1,8 +1,8 @@
-# CloudWalker: Random walks for 3D point cloud shape analysis
+# CloudWalker: Random walks for 3D point cloud shape analysis (SMI 2022)
 ![teaser](images/teaser.png)
 
 ## [[Paper]](https://arxiv.org/abs/2112.01050)
-Created by [Adi Mesika](mailto:adimesika10@gmail.com) from Technion - Israel Institute of Technology
+Created by [Adi Mesika](mailto:adimesika10@gmail.com), Yizhak Ben-Shabat (Itzik) and Ayellet Tal from Technion - Israel Institute of Technology
 
 This repository contains the implementation of CloudWalker
 
@@ -100,11 +100,20 @@ python evaluate_classification.py modelnet40_normal_resampled runs/0017-25.05.20
 ## Citation
 If you find our work useful in your research, please consider citing:
 ```
-@article{mesika2021cloudwalker,
-  title={CloudWalker: 3D Point Cloud Learning by Random Walks for Shape Analysis},
-  author={Mesika, Adi and Ben-Shabat, Yizhak and Tal, Ayellet},
-  journal={arXiv preprint arXiv:2112.01050},
-  year={2021}
+@article{DBLP:journals/corr/abs-2112-01050,
+  author    = {Adi Mesika and
+               Yizhak Ben{-}Shabat and
+               Ayellet Tal},
+  title     = {CloudWalker: 3D Point Cloud Learning by Random Walks for Shape Analysis},
+  journal   = {CoRR},
+  volume    = {abs/2112.01050},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2112.01050},
+  eprinttype = {arXiv},
+  eprint    = {2112.01050},
+  timestamp = {Tue, 07 Dec 2021 12:15:54 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2112-01050.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
 
