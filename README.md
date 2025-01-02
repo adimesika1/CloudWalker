@@ -65,7 +65,7 @@ It currently requires the walks to be pre-created.
 
 To prepare the walks, run `python pre_created_walks/save_walk_as_npz.py <dataset>`
 or download our walks from 
-[datasets_processed](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/datasets_processed/)
+[datasets_processed](https://cgmdata.ece.technion.ac.il/public/data/MesikaCloudWalker/)
 to `CloudWalker/datasets_processed/<dataset>`. (dirs version)
 
 ## Training
@@ -88,7 +88,7 @@ python evaluate_classification.py <dataset> <trained_model_directory>
 ```
 
 ## Pretrained   
-You can use some pretrained models from [our pretrained models](https://cgm.technion.ac.il/Computer-Graphics-Multimedia/Software/CloudWalker/runs.zip) to run evaluation only.
+You can use some pretrained models from [our pretrained models](https://cgmdata.ece.technion.ac.il/public/data/MesikaCloudWalker/runs.zip) to run evaluation only.
 Download and extract the runs.zip file to the "runs" directory in the root. 
 Run the evaluation script as described previously (run on the processed dataset).
 
